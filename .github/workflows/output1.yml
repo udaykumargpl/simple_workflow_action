@@ -2,6 +2,7 @@ name: full information of github
 on: workflow_dispatch
 jobs:
     output:
+        runs-on: ubuntu-latest
         steps:
             - name: get github context
               run: echo "${{ toJSON(github) }}"
