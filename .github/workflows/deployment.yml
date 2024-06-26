@@ -1,7 +1,33 @@
 name: deploying nodejs appplication
 on: push
 jobs:
-  test:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: use node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: run lint
+        run: npm lint
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: use node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: run test
+        run: npm test
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: get code
