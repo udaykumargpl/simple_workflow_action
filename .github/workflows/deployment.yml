@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: run lint
         run: npm lint
   Test:
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: run test
         run: npm test
   Deploy:
@@ -37,6 +37,6 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: run test
         run: npm test
