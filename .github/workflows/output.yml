@@ -4,4 +4,4 @@ jobs:
     output:
         steps:
             - name: get github context
-                run: echo "${{ toJSON(github) }}"
+              run: echo "${{ toJSON(github) }}"
