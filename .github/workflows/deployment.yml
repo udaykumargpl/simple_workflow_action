@@ -28,9 +28,11 @@ jobs:
         run: npm ci
       - name: run test
         run: npm test
-  Deploy:
+  build:
     needs: Test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.Publish.outputs.some-file-js }}
     steps:
       - name: get code
         uses: actions/checkout@v3
@@ -40,5 +42,14 @@ jobs:
           node-version: 18
       - name: install dependencies
         run: npm ci
-      - name: run test
-        run: npm test
+      - name: run buils
+        run: npm build
+      - name: find filename and get the output
+        id: Publish
+        run: find dist/assets/*.js -type f -execdir 'some-file-js={}' >> $GITHUB_OUTPUT ';'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: output filename
+        run: echo "${{ needs.build.outputs.script-file }}"        
