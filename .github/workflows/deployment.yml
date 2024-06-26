@@ -43,7 +43,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: run buils
-        run: npm build
+        run: npm run build
       - name: find filename and get the output
         id: Publish
         run: find dist/assets/*.js -type f -execdir 'some-file-js={}' >> $GITHUB_OUTPUT ';'
